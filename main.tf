@@ -153,7 +153,7 @@ resource "kubernetes_stateful_set" "cassandra" {
         access_modes = ["ReadWriteOnce"]
         storage_class_name = "generic"
         resources {
-          requests = { storage = ${var.storage_size} }
+          requests = { storage = "${var.storage_size}" }
         }
       }
     }

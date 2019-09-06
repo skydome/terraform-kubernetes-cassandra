@@ -8,6 +8,7 @@ Tested on GKE but it should work for any kubernetes cluster given the right terr
 - **cassandra_name**         : name of the cassandra deployment
 - **namespace**              : kubernetes namespace to be deployed
 - **cluster_size**           : replica instance count
+- **storage_size**           : cassandra storage size (e.g "10Gi")
 
 ## Dependencies
 

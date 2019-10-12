@@ -1,8 +1,8 @@
 resource "kubernetes_service" "cassandra" {
   metadata {
-    name   = "${var.cassandra_name}"
+    name      = "${var.cassandra_name}"
     namespace = "${var.namespace}"
-    labels = { app = "${var.cassandra_name}"}
+    labels    = { app = "${var.cassandra_name}" }
   }
   spec {
     port {
@@ -30,7 +30,7 @@ resource "kubernetes_service" "cassandra" {
       port        = 9160
       target_port = "9160"
     }
-    selector   = { app = "${var.cassandra_name}"}
+    selector   = { app = "${var.cassandra_name}" }
     cluster_ip = "None"
     type       = "ClusterIP"
   }
@@ -38,14 +38,14 @@ resource "kubernetes_service" "cassandra" {
 
 resource "kubernetes_stateful_set" "cassandra" {
   metadata {
-    name   = "${var.cassandra_name}"
+    name      = "${var.cassandra_name}"
     namespace = "${var.namespace}"
-    labels = { app = "${var.cassandra_name}" }
+    labels    = { app = "${var.cassandra_name}" }
   }
   spec {
     replicas = "${var.cluster_size}"
     selector {
-      match_labels = { app = "${var.cassandra_name}"}
+      match_labels = { app = "${var.cassandra_name}" }
     }
     template {
       metadata {
@@ -150,8 +150,8 @@ resource "kubernetes_stateful_set" "cassandra" {
         labels = { app = "${var.cassandra_name}" }
       }
       spec {
-        access_modes = ["ReadWriteOnce"]
-        storage_class_name = "generic"
+        access_modes       = ["ReadWriteOnce"]
+        storage_class_name = "${var.storage_class_name}"
         resources {
           requests = { storage = "${var.storage_size}" }
         }
